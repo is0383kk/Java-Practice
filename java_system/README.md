@@ -335,6 +335,70 @@ public class Ex11 {
 }
 ```
 
+## 標準入出力  
+- 標準入力：キーボードからの入力
+- 標準出力：端末上への出力
 
+---
+キーボードから標準入力された文字列を標準出力するプログラム  
+```java
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
+public class InputOutput {
+    public static void main(String[] args) {
+        BufferedReader key =
+            new BufferedReader(new InputStreamReader(System.in));
 
+        try {
+            while (true) {
+                System.out.print("何か入力（exitで終了）> ");
+                String line = key.readLine(); // 標準入力
+                if (line.equals("exit")) { // exitが入力されたら終了
+                    break;
+                }
+                System.out.println(line); // 標準出力
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+実行例
+```bash 
+何か入力（exitで終了）> aaaa
+aaaa
+何か入力（exitで終了）> exit
+```
+---
+Sccanerを使用した標準入力の例
+```java
+import java.util.Scanner;
+
+public class ScannerSample {
+    public static void main(String[] args) {
+        @SuppressWarnings("resource") // Eclipse上のワーニングを出さないようにする処理
+        Scanner scanner = new Scanner(System.in);
+        int total = 0;
+
+        System.out.println("入力した数値を加算します。");
+        System.out.print("数値の入力(終了は数値以外)> ");
+
+        while (scanner.hasNextInt()) { // int型変数が入力される限りループ
+            total += scanner.nextInt();
+            System.out.print("数値の入力(終了は数値以外)> ");
+        }
+        System.out.printf("合計値%5d%n", total);
+    }
+}
+```
+実行例
+```bash
+入力した数値を加算します。
+数値の入力(終了は数値以外)> 5
+数値の入力(終了は数値以外)> 5
+数値の入力(終了は数値以外)> a
+合計値   10
+```
