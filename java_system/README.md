@@ -295,7 +295,99 @@ public class FileCopy2 {
 3人の平均年齢 25.33才
 ```
 
+## 例外処理
+```java
+import java.io.*;
+public class Ex11 {
+    public static void main(String[] args) {
+        // TODO 自動生成されたメソッド・スタブ
+        String from = "./profile.txt";
+        BufferedReader reader = null;
+        
+        int i = 0;
+        try {
+            reader = new BufferedReader(new FileReader(from));
+            String line = null;
+            while((line = reader.readLine()) != null) {
+                System.out.printf("%d: %s \n", i, line);
+                i++;
+            }
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }	
+    }
+    }
+```
 
+```java
+package java_system;
+import java.io.*;
+
+
+public class Ex12 {
+    private static void sleep() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String[] args) {
+        // TODO 自動生成されたメソッド・スタブ
+        String from = "./profile.txt";
+        BufferedReader reader = null;
+        String to = "./to.txt";
+        BufferedWriter writer = null;
+        
+        int i = 0;
+        try {
+            reader = new BufferedReader(new FileReader(from));
+            writer = new BufferedWriter(new FileWriter(to));
+            String line = null;
+            
+            while((line = reader.readLine()) != null) {
+                System.out.printf("%d: %s \n", i, line);
+                writer.write(line);
+                writer.newLine();
+                writer.flush();
+                sleep();
+                i++;
+            }
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
+    }
+    }
+```
 
 
 
