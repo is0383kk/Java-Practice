@@ -697,6 +697,7 @@ public class HashMap_sample {
         }
         
         // キーが含まれるかどうかの判定
+        System.out.println("現在のmap:" + map);
         System.out.println("りんご:" + map.containsKey("りんご")); // りんごは削除済み
         System.out.println("もも:" + map.containsKey("もも")); // ももはある
     }
@@ -730,6 +731,7 @@ value:90
 value:110
 
 キーが存在するかの判定-----------------------------------
+現在のmap:{もも=90, バナナ=110}
 りんご:false
 もも:true
 ```
