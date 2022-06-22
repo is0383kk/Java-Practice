@@ -643,3 +643,93 @@ public class sort {
 シャッフル:[4, 2, 1, 3, 5]
 ソート:[1, 2, 3, 4, 5]
 ```
+
+## HashMapクラス
+- HashMapクラス：キーと値を対応付けて保持
+    - インデックスの代わりにキーで値を参照
+    - キーの重複不可
+
+|キー|値|
+|---|---|
+|りんご|100|
+|ばなな|110|
+
+---
+HashMapクラスを使ったサンプルプログラム
+```java
+
+import java.util.*;
+
+public class HashMap_sample {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+        // 要素の追加
+        map.put("りんご", 100);
+        map.put("バナナ", 110);
+        map.put("もも", 90);
+        System.out.println("mapの要素:" + map);
+        
+        // 要素の取得
+        int element = map.get("りんご");
+        System.out.println("キー(りんご)の値:" + element);
+        
+        // サイズの取得
+        int size = map.size();
+        System.out.println("mapのサイズ:" + size);
+        
+        // キーの削除
+        map.remove("りんご");
+        System.out.println("りんごを削除したmapの要素:" + map);
+        
+        // キーと値の一覧取得
+        Set<String> keySet = map.keySet();
+        Collection<Integer> values = map.values();
+        System.out.println("キーの一覧を取得:" + keySet);
+        System.out.println("値の一覧を取得:" + values);
+        
+        // 拡張for文でキーの取得
+        for (String key : map.keySet()) {
+            System.out.println(key + ": " + map.get(key));
+        }
+        // 拡張for文で値の取得
+        for (int value : map.values()) {
+            System.out.println("value:" + value);
+        }
+        
+        // キーが含まれるかどうかの判定
+        System.out.println("りんご:" + map.containsKey("りんご")); // りんごは削除済み
+        System.out.println("もも:" + map.containsKey("もも")); // ももはある
+    }
+}
+
+```
+実行結果
+```
+要素の追加-----------------------------------
+mapの要素:{もも=90, りんご=100, バナナ=110}
+
+要素の取得-----------------------------------
+キー(りんご)の値:100
+
+サイズの取得-----------------------------------
+mapのサイズ:3
+
+キーの削除-----------------------------------
+りんごを削除したmapの要素:{もも=90, バナナ=110}
+
+キーと値の一覧取得-----------------------------------
+キーの一覧を取得:[もも, バナナ]
+値の一覧を取得:[90, 110]
+
+拡張for文でキーの取得-----------------------------------
+もも: 90
+バナナ: 110
+
+拡張for文で値の取得-----------------------------------
+value:90
+value:110
+
+キーが存在するかの判定-----------------------------------
+りんご:false
+もも:true
+```
