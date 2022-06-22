@@ -407,9 +407,25 @@ public class ScannerSample {
 - コレクション：複数のオブジェクトを保持するデータ構造
     - 基本データ型は保持できない
     - 同じクラスのオブジェクトを保持
-    - 可変長
+    - 可変長：**配列のように事前に要素数を決める必要は無い**=動的に要素数を変化させられる  
+    - 例：ECサイトのカート
 ---
 - ArrayListクラス：複数のオブジェクトを順序付けしてまとめて保持するデータ構造
+    - コレクション内部では**基本データ型を要素として持つことはできない**ので**ラッパークラスを使う**  
+
+|基本データ型|ラッパークラス|
+|---|---|
+|boolean|Boolean|
+|byte|Byte|
+|char|Character|
+|short|Short|
+|int|Interger|
+|long|Long|
+|float|Float|
+|double|Double|
+
+---
+ArrayListのサンプルプログラム  
 ```java
 import java.util.ArrayList;
 import java.util.Iterator;
