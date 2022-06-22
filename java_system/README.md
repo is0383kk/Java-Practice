@@ -402,3 +402,56 @@ public class ScannerSample {
 数値の入力(終了は数値以外)> a
 合計値   10
 ```
+
+# 第２章：コレクション
+- コレクション：複数のオブジェクトを保持するデータ構造
+    - 基本データ型は保持できない
+    - 同じクラスのオブジェクトを保持
+    - 可変長
+---
+- ArrayListクラス：複数のオブジェクトを順序付けしてまとめて保持するデータ構造
+```java
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class sample {
+    public static void main(String[] args) {
+        // インスタンスの生成
+        ArrayList<String> list = new ArrayList<>();
+        
+        // 要素の追加
+        list.add("First");
+        list.add("Second");
+        list.add("Third");
+        System.out.println("リストの要素" + list); // [First, Second, Third]
+        
+        list.add(0,"Inserted");
+        System.out.println("挿入後のリストの要素:" + list); // [Inserted, First, Second, Third]
+        
+        // 要素の取得
+        String element = list.get(0); // 引数で指定した添字の要素を取得
+        System.out.println("element:" + element); // Inserted
+        
+        // 要素数の取得
+        int size = list.size();
+        System.out.println("リストのサイズ:" + size); // 4
+        
+        // 要素の削除
+        list.remove(0);
+        System.out.println("リストの0番目の要素を削除:" + list); // [First, Second, Third]
+
+        // for文の利用
+        for (int i = 0; i < list.size(); i++) {
+            String s = list.get(i);
+            System.out.println("s:" + s + " 文字数:" + s.length()); // s:String 文字数:int
+        }
+        
+        // Iterator
+        Iterator<String> i = list.iterator();
+        while(i.hasNext()) {
+            String s = i.next();
+            System.out.println("s:" + s + " 文字数:" + s.length());
+        }
+    }
+}
+```
