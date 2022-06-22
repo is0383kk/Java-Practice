@@ -471,6 +471,12 @@ public class sample {
             String s = i.next();
             System.out.println("s:" + s + " 文字数:" + s.length());
         }
+
+        // ラッパークラスの利用
+        ArrayList<Integer> list_int = new ArrayList<>();
+        list_int.add(1);
+        list_int.add(2);
+        System.out.println("リストの要素:" + list_int);
     }
 }
 ```
@@ -498,5 +504,135 @@ Iteratorの利用------------------------------------
 s:First 文字数:5
 s:Second 文字数:6
 s:Third 文字数:5
+
+ラッパークラスの利用------------------------------
+リストの要素:[1, 2]
 ```
 
+---
+インスタンス生成したオブジェクトに対するArrayList
+
+Employeeクラス  
+```java
+public class Employee implements Comparable<Employee> {
+    private int id;
+    private String name;
+    private int salary;
+
+    public Employee() {
+    }
+
+    public Employee(int id, String name, int salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public String toString() {
+        return id + "番の" + name + "さん（給料：" + salary + "円）";
+    }
+
+    @Override
+    public int compareTo(Employee o) {
+        return this.name.compareTo(o.name);
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+
+public class sample {
+    public static void main(String[] args) {
+        ArrayList<Employee> list = new ArrayList<Employee>();
+
+        Employee emp1 = new Employee(1, "山田", 230000);
+        list.add(emp1);
+
+        Employee emp2 = new Employee();
+        emp2.setId(2); emp2.setName("吉田"); emp2.setSalary(300000);
+        list.add(emp2);
+
+        list.add(new Employee(3, "領家", 200000));
+
+        int sum = 0;
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i)); 
+            sum = sum + list.get(i).getSalary();
+        }
+        int avg = sum / list.size();
+        System.out.println("平均給料 : " + avg + "円");
+    }
+}
+```
+
+
+## リストの操作
+- Collectionsクラスを使ったリスト操作
+    - Collections.reverse(list)：リストの要素を反転
+    - Collections.shuffle(list)：リストの要素をシャッフル
+    - Collections.sort(list)：リストの要素をソート
+---
+
+Collectionsを使ったサンプルプログラム  
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+public class sort {
+    public static void main(String[] args) {
+        // インスタンスの生成
+        ArrayList<Integer> list_int = new ArrayList<>();
+        list_int.add(1);
+        list_int.add(2);
+        list_int.add(3);
+        list_int.add(4);
+        list_int.add(5);
+        System.out.println("初期状態:" + list_int);
+        
+        // 反転
+        Collections.reverse(list_int);
+        System.out.println("反転:" + list_int);
+        
+        // シャッフル
+        Collections.shuffle(list_int);
+        System.out.println("シャッフル:" + list_int);
+        
+        // ソート
+        Collections.sort(list_int);
+        System.out.println("ソート:" + list_int);
+    }
+}
+```
+
+実行結果
+```
+初期状態:[1, 2, 3, 4, 5]
+反転:[5, 4, 3, 2, 1]
+シャッフル:[4, 2, 1, 3, 5]
+ソート:[1, 2, 3, 4, 5]
+```
